@@ -3,7 +3,6 @@ import pandas as pd
 import streamlit.components.v1 as components
 import openpyxl
 import os
-import google.generativeai as genai
 
 
 st.sidebar.caption('By Baja Caltec')
@@ -67,56 +66,3 @@ if ingresar ==True and contra in usuarios:
         st.title('Historia del método científico')        
         components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
         
-    with st.expander('AI'):
-        genai.configure(api_key=key)
-
-        # Crea el modelo
-        generation_config = {
-            "temperature": 0.9,
-            "top_p": 1,
-            "top_k": 0,
-            "max_output_tokens": 2048,
-            "response_mime_type": "text/plain",
-        }
-        safety_settings = [
-            {
-                "category": "HARM_CATEGORY_HARASSMENT",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE",
-            },
-            {
-                "category": "HARM_CATEGORY_HATE_SPEECH",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE",
-            },
-            {
-                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE",
-            },
-            {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "threshold": "BLOCK_MEDIUM_AND_ABOVE",
-            },
-        ]
-
-        model = genai.GenerativeModel(
-            model_name="gemini-pro",
-            safety_settings=safety_settings,
-            generation_config=generation_config,
-        )
-
-        # Inicializa la sesión de chat
-        chat_session = model.start_chat(history=[]) 
-
-        # Define la caja de texto para la pregunta
-        pregunta = st.text_area("Preguntale a la AI")
-
-        # Verifica si se presionó el botón 'Enviar'
-        if st.button("Enviar"):
-            chat_session.send_message(pregunta)
-            response = chat_session.get_response()
-            st.text(response.text)
-
-            # Muestra el historial de la conversación
-            history_text = ""
-            for turn in chat_session.history:
-                history_text += f"**Tú:** {turn['user_message']}\n**AI:** {turn['assistant_message']}\n\n"
-            st.text(history_text)
