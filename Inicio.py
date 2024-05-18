@@ -2,7 +2,15 @@ import streamlit as st
 import pandas as pd 
 import streamlit.components.v1 as components
 import openpyxl
-import os
+import psycopg2
+
+#Base de datos
+conn = psycopg2.connect(
+                        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
+                        database="bajacaltec_ciencia",
+                        user="bajacaltec_ciencia_user",
+                        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
+                    )
 
 
 st.sidebar.caption('By Baja Caltec')
@@ -72,9 +80,64 @@ if ingresar ==True and contra in usuarios:
                     aborto=st.selectbox('¿Estás a favor o en contra del aborto?',['A favor','En contra'])
                     pena=st.selectbox('¿Estarías a favor de la pena de muerte en México en el caso de narcotraficantes?',['Si','No'])
                     qx1=st.selectbox('¿Qué consideras que es lo más importante para evitar infecciones en el quirófano',['Lavado de manos','Botas qurúrgicas','Mantener técnica esteril','Lavado de instrumental'])
-
+                    qx2=st.selectbox('¿Estas de acuerdo con la siguiente oración?:El uso de cepillos quirúrgicos es necesario para un correcto lavado quirúrgico de manos',['Si','No'])
+            with col2:
+                    prob=st.selectbox('¿Crees que es más peligroso lanzarse de un paracaidas qué estar hospitalizado?',['Si','No'])
+                    saber1=st.selectbox('¿Sabes por que el cielo es de color azul?',['Si','No','No sé'])
+                    saber2=st.radio('Sabes por que suceden las mareas y su relación con la luna?',['Si','No'])
+                    st.text_input('Si tu, respuesta es afirmativa, explica ¿por que?')
+                    protocolo=st.selectbox('Si, tuvieras la oportunidad de hacer un proyecto de investigación, en cual de las siguientes áreas te gustaría realizarlo?',['Neurocirugía','Cirugía general','Urología','Manejo de la sala quirúrgica'])
                     bot_enviar=st.form_submit_button('Enviar')
-    
+                    # Conectarse a la base de datos Postgres
+                    
+
+                    # Crear un cursor para ejecutar sentencias SQL
+                    cursor = conn.cursor()
+
+                    # Insertar datos en la tabla
+                    if bot_enviar:
+                        creat='''CREATE TABLE IF NOT EXISTS encuestas (
+                        id SERIAL PRIMARY KEY,
+                        edad INTEGER NOT NULL,
+                        genero VARCHAR(255) NOT NULL,
+                        aborto VARCHAR(255) NOT NULL,
+                        pena_muerte VARCHAR(255) NOT NULL,
+                        qx1 VARCHAR(255) NOT NULL,
+                        qx2 VARCHAR(255) NOT NULL,
+                        paracaidas VARCHAR(255) NOT NULL,
+                        saber1 VARCHAR(255) NOT NULL,
+                        saber2 VARCHAR(255) NOT NULL,
+                        saber2_explicacion TEXT,
+                        protocolo VARCHAR(255) NOT NULL
+                            )
+                            '''
+                        cursor.execute(creat)
+                        cursor.execute("""
+                            INSERT INTO encuestas (
+                                edad, genero, aborto, pena_muerte, qx1, qx2, paracaidas, saber1, saber2, protocolo
+                            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        """, (
+                            edad,
+                            género,
+                            aborto,
+                            pena,
+                            qx1,
+                            qx2,
+                            prob,
+                            saber1,
+                            saber2,
+                            protocolo
+                        ))
+
+                        # Guardar los cambios en la base de datos
+                        conn.commit()
+
+                        # Mostrar un mensaje de confirmación
+                        st.success("¡Datos enviados correctamente!")
+
+                    # Cerrar la conexión a la base de datos
+                    conn.close()
+                        
     with tab3:
         st.title('Historia del método científico')        
         components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
