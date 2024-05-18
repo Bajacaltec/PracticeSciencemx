@@ -14,12 +14,11 @@ falcho=False
 ingresar=st.sidebar.toggle('Ingresar',disabled=Desactivar)
 
 usuarios = ('2089', '234')
-key=st.sidebar.text_input('Poner API key gemini')
+#key=st.sidebar.text_input('Poner API key gemini')
 
 if ingresar ==True and contra in usuarios:
-
-    st.title('Metodología de la investigación I') 
-    tab1,tab2,tab3=st.tabs(['Presentación','Historía','Tipos de ciencia'])
+    st.subheader('Metodología de la investigación I')
+    tab1,tab2,tab3=st.tabs(['Presentación','Encuesta','Historia'])
     with tab1:
         st.subheader('Docentes')
         col1,col2=st.columns(2)
@@ -60,9 +59,21 @@ if ingresar ==True and contra in usuarios:
             st.dataframe(df_calif,hide_index=True,width=600)
             df_crit=pd.read_excel('xlsx/Calificación df.xlsx',sheet_name='Sheet2')
             st.dataframe(df_crit,hide_index=True)
-        with st.expander('Quienes somos'):
-            edad=st.number_input('Edad',step=1)
+        
     with tab2:
+        with st.form('Datos anónimos'):
+
+            col1,col2=st.columns(2)
+
+            with col1:
+                    st.title('Encuesta')
+                    edad=st.number_input('Edad',step=1)
+                    género=st.radio('Género',['Femenino','Masculino'])
+                    aborto=st.selectbox('¿Estás a favor o en contra del aborto?',['A favor','En contra'])
+                    pena=st.selectbox('¿Estarías a favor de la pena de muerte en México en el caso de narcotraficantes?',['Si','No'])
+                    bot_enviar=st.form_submit_button('Enviar')
+    
+    with tab3:
         st.title('Historia del método científico')        
         components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
         
