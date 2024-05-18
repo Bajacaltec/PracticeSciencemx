@@ -71,6 +71,8 @@ if ingresar ==True and contra in usuarios:
                     género=st.radio('Género',['Femenino','Masculino'])
                     aborto=st.selectbox('¿Estás a favor o en contra del aborto?',['A favor','En contra'])
                     pena=st.selectbox('¿Estarías a favor de la pena de muerte en México en el caso de narcotraficantes?',['Si','No'])
+                    qx1=st.selectbox('¿Qué consideras que es lo más importante para evitar infecciones en el quirófano',['Lavado de manos','Botas qurúrgicas','Mantener técnica esteril','Lavado de instrumental'])
+
                     bot_enviar=st.form_submit_button('Enviar')
     
     with tab3:
