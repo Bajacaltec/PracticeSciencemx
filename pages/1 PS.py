@@ -48,6 +48,7 @@ if ingresar ==True and contra in usuarios:
         df = pd.DataFrame(resultados, columns=[col.name for col in cursor.description])
 
         st.dataframe(df)
+       
 
         # Cerrar la conexión a la base de datos
         conn.close()
@@ -56,7 +57,7 @@ if ingresar ==True and contra in usuarios:
         genero_frec=genero_col.value_counts()
         st.write(genero_frec)
         st.bar_chart(genero_frec)
-
+        
 
 
 
