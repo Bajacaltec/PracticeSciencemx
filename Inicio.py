@@ -57,7 +57,7 @@ if ingresar ==True and contra in usuarios:
                 st.write('Ciencia y pseudociencia')
             with sol3:
                 st.info('Anteproyecto')
-                st.write('Elaboración de un anteproyecto funcional')
+                st.write('Elaboración de un anteproyecto de investigación')
         with st.expander('Temario'):
             df_tem={'Tema':['Historía de la ciencia']}
             df_temario=pd.read_excel('xlsx/Temario.xlsx')
