@@ -26,7 +26,7 @@ usuarios = ('2089', '234')
 
 if ingresar ==True and contra in usuarios:
     st.subheader('Metodología de la investigación I')
-    tab1,tab2,tab3=st.tabs(['Presentación','Encuesta','Historia'])
+    tab1,tab2,tab3,tab4,tab5=st.tabs(['Presentación','Encuesta','Historía de la ciencia','Ideas e introducción','Pensamiento crítico'])
     with tab1:
         st.subheader('Docentes')
         col1,col2=st.columns(2)
@@ -41,6 +41,8 @@ if ingresar ==True and contra in usuarios:
             st.caption('Dr. Edgar Santos Marcial')
             st.caption('Neurocirujano, Dr. Med, MSc, SNI III  ')
         st.markdown('_____')
+        st.image('https://upload.wikimedia.org/wikipedia/commons/b/b3/Santos_E_et_al_Neuroimage_2014_.gif')
+        st.caption('Visualización multiespectral de una CSD (Cortical spreading depresion) en un modelo porcino, Dr. Santos')
         with st.expander('Ejes del curso'):
             sol1,sol2,sol3=st.columns(3)
             with sol1:
@@ -139,6 +141,10 @@ if ingresar ==True and contra in usuarios:
                     conn.close()
                         
     with tab3:
-        st.title('Historia del método científico')        
+        st.title('Ideas de investigación e introducción')        
         components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
-        
+    with tab4:
+         st.info('h')  
+    with tab5:
+        st.video('https://www.youtube.com/watch?v=ZlgXh_sXm7M')
+        st.video('https://www.youtube.com/watch?v=SvxA1Xn_9tA')
