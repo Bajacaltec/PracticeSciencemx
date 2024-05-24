@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit.components.v1 as components
 import openpyxl
 import psycopg2
+from streamlit_lottie import st_lottie as stl
 
 #Base de datos
 conn = psycopg2.connect(
@@ -16,6 +17,7 @@ conn = psycopg2.connect(
 st.sidebar.caption('By Baja Caltec')
 
 Desactivar=False
+usuario=st.sidebar.text_input('Usuario')
 #from streamlit_lottie import st_lottie
 contra = st.sidebar.text_input('Contraseña', type='password')
 falcho=False
@@ -26,7 +28,7 @@ usuarios = ('2089', '234')
 
 if ingresar ==True and contra in usuarios:
     st.subheader('Metodología de la investigación I')
-    tab1,tab2,tab3,tab4,tab5=st.tabs(['Presentación','Encuesta','Historía de la ciencia','Ideas e introducción','Pensamiento crítico'])
+    tab1,tab2,tab3,tab4,tab5=st.tabs(['Presentación','Encuesta','Historía de la ciencia','Pensamiento crítico','Idea de investigación'])
     with tab1:
         st.subheader('Docentes')
         col1,col2=st.columns(2)
@@ -41,7 +43,17 @@ if ingresar ==True and contra in usuarios:
             st.caption('Dr. Edgar Santos Marcial')
             st.caption('Neurocirujano, Dr. Med, MSc, SNI III  ')
         st.markdown('_____')
-        st.image('https://upload.wikimedia.org/wikipedia/commons/b/b3/Santos_E_et_al_Neuroimage_2014_.gif')
+        st.subheader('AG Santos, laboratorio de neurofisiología vascular')
+        sol1,sol2=st.columns(2)
+        with sol1:
+            st.image('https://newzealandfresh.sg/cdn/shop/files/Pigs-Brains_1024x1024.jpg?v=1704417949')
+            st.caption('Cerebro girencefálico porcino')
+        with sol2:
+            st.image('https://www.researchgate.net/publication/231861205/figure/fig1/AS:214208277946396@1428082641915/Image-of-a-representative-rat-brain-showing-a-focal-ischemic-lesion-within-the-right.png')
+            st.caption('Cerebro lisencefálico murino')
+        st.image('Imagenes/kartoonpig.jpg')
+        st.caption('Grabación multiespectral a traves de craneotomía posterior a la oclusión de la arteria cerebral media vía transorbital')
+        st.image('https://upload.wikimedia.org/wikipedia/commons/b/b3/Santos_E_et_al_Neuroimage_2014_.gif',width=705)
         st.caption('Visualización multiespectral de una CSD (Cortical spreading depresion) en un modelo porcino, Dr. Santos')
         with st.expander('Ejes del curso'):
             sol1,sol2,sol3=st.columns(3)
@@ -69,6 +81,12 @@ if ingresar ==True and contra in usuarios:
             st.dataframe(df_calif,hide_index=True,width=600)
             df_crit=pd.read_excel('xlsx/Calificación df.xlsx',sheet_name='Sheet2')
             st.dataframe(df_crit,hide_index=True)
+        st.subheader('Curva de aprendizaje y olvido')
+        yol1,yol2=st.columns(2)
+        with yol1:
+            st.image('data:image/jpeg;base64,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4zobF+YzADPVYyQ/P6bDibvMmYm4/wCm4xf4uvaXld+mmwJtcPxM3WHTCAcIFuzDa3Uo/IYs16lU1XzXfnu3gz6RLu7YcfD0cVhjtbhixJD9XgzVOHGbrZoqvQQEBAQEBAQEBAQEBB+oeRep9bh9274rw142e2jO55F6n1uH3bvimvGxozueRep9bh9275k142NGdzyL1PrcPu3fFNeNjRnc8i9T63D7t3zJrxsaM7nkXqfW4fdu+ZNeNjRnc8i9T63D7t3zJrxsaM7nkXqfW4fdu+Ka8bGjO55F6n1uH3bvmTXjY0Z3PIvU+tw+7d8U142NGdzyL1PrcPu3fFNeNjRnc8i9T63D7t3zJrxsaM7nkXqfW4fdu+ZNeNjRnc8i9T63D7t3zJrxsaM7nkXqfW4fdu+Ka8bGjO55F6n1uH3bvimvGxozunkXqPW4fdu+ZNeNjRnc8i1R63D7t3xTXjY0Z3XyL1PrcPu3fMmvGxozu2Y/0UbQazdt2iGx6YAJA23VbFkM9E142Z8NF78r+jV8i9T63D7t3zJrxs1oTueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGdzyL1PrcPu3fMmvGxozueRep9bh9275k142NGd37QuZ0CAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIP//Z')
+        with yol2:
+            st.image('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSJR9ovYgt7rPBfwWlDetGz9pkBsjgrGNxzg&s')
         
     with tab2:
         with st.form('Datos anónimos'):
@@ -141,10 +159,44 @@ if ingresar ==True and contra in usuarios:
                     conn.close()
                         
     with tab3:
-        st.title('Ideas de investigación e introducción')        
-        components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
-    with tab4:
-         st.info('h')  
-    with tab5:
         st.video('https://www.youtube.com/watch?v=ZlgXh_sXm7M')
-        st.video('https://www.youtube.com/watch?v=SvxA1Xn_9tA')
+        st.title('Historía del pensamiento científico')        
+        components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vSe3Fg2NFEl6VES9qmoS4vnmgEp7GTjCYrSH22k9m1afpOcgF2hWv6LKe25I8vQYZq6aRQP3xkQMnSP/embed?start=false&loop=false&delayms=3000',height=500)
+    with tab5:
+        col1,col2,col3=st.columns([2,2,2])
+
+        with col1:
+            st.subheader('¿Como encontrar ideas para una investigación?')
+            with col2:
+                st.info("""Explorar tus intereses y áreas de conocimiento""")
+                st.success('¿Qué temas te apasionan? ¿En qué áreas tienes experiencia o conocimiento previo?')
+            with col3:
+                st.info('')
+                    
+        with st.expander('Bases de datos'):
+            st.text('Google Scholar')  
+            st.markdown('https://scholar.google.com')
+            st.text('Pubmed') 
+            st.markdown('https://pubmed.ncbi.nlm.nih.gov')
+            st.text('ELICIT')
+            st.markdown('https://elicit.com/notebook/ddba5f35-e4c9-46f1-bb45-01f3da9d2762')
+            with st.popover("Open popover"):
+                st.markdown("Hello World 👋")
+                name = st.text_input("What's your name?")
+
+
+#Analizar problemas y necesidades: Observa tu entorno social, profesional o comunitario. ¿Qué problemas o necesidades puedes identificar que podrían ser objeto de investigación? ¿Cómo tu investigación podría contribuir a solucionarlos o mejorar la situación actual?
+
+#Consultar con expertos: Dialoga con profesores, investigadores y profesionales en tu área de interés. Solicita su orientación, sugerencias y recomendaciones sobre posibles temas de investigación. Aprovecha su experiencia y conocimiento para afinar tus ideas.""")
+        with st.expander('Viablidad'):
+            st.subheader('Viabilidad del proyecto')
+            viab_lottie='https://lottie.host/a0082b22-a44d-4f3d-a2a9-300bfc8c0a97/EU2v6Zvwgw.json'
+            stl(viab_lottie,width=600)
+            st.info('Evalúa si el tema elegido es viable en términos de tiempo, recursos y acceso a información. Asegúrate de que puedas recopilar datos suficientes y de calidad para realizar una investigación rigurosa y completa')
+        with st.expander('Pregunta de investigación'):
+            st.subheader('Definir preguntas de investigación')
+            st.info('Una vez elegido el tema, formula preguntas de investigación claras, precisas y relevantes que guíen tu trabajo. Las preguntas deben ser factibles de responder y contribuir al conocimiento en el área.')
+    with tab4:
+        st.subheader('¿Qué es el pensamiento crítico?')       
+        components.iframe('https://docs.google.com/presentation/d/e/2PACX-1vQs9c5f3qfakSGVgActoNc7Dfth3J6Fpk4z7LTQwcGgLCvpcvfpqHzZRh8C8F6X9Mv9lUlaX_y-qjXv/embed?start=false&loop=false&delayms=3000',height=500)
+
