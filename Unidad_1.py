@@ -78,9 +78,9 @@ if ingresar ==True and contra in usuarios:
             st.dataframe(df_temario,hide_index=True)
         with st.expander('Calificación'):
             df_calif=pd.read_excel('xlsx/Calificación df.xlsx',sheet_name='Sheet1')
-            st.dataframe(df_calif,hide_index=True,width=600)
+            st.dataframe(df_calif,hide_index=True,width=800)
             df_crit=pd.read_excel('xlsx/Calificación df.xlsx',sheet_name='Sheet2')
-            st.dataframe(df_crit,hide_index=True)
+            st.dataframe(df_crit,hide_index=True,width=800)
         st.subheader('Curva de aprendizaje y olvido')
         yol1,yol2=st.columns(2)
         with yol1:
