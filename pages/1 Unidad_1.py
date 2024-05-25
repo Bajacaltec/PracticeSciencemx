@@ -11,7 +11,6 @@ st.set_page_config(layout='wide')
 st.sidebar.caption('By Baja Caltec')
 
 Desactivar=False
-usuario=st.sidebar.text_input('Usuario')
 #from streamlit_lottie import st_lottie
 contra = st.sidebar.text_input('Contraseña', type='password')
 falcho=False
