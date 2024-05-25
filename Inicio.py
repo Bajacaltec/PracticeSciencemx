@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd 
 import numpy as np
 import funciones
+st.sidebar.subheader('Practice science')
 
 st.sidebar.caption('By Baja Caltec')
 
