@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 import openpyxl
 import psycopg2
 from streamlit_lottie import st_lottie as stl
+import datetime
 
 #Base de datos
 conn = psycopg2.connect(
@@ -27,7 +28,7 @@ ingresar=st.sidebar.toggle('Ingresar',disabled=Desactivar)
 
 usuarios = ('234')
 if ingresar ==True and contra in usuarios and nombre in claves:
-    st.subheader('Evaluación unidad 1: Historía del pensamiento científico')
+    st.subheader('Evaluación unidad 1: Pensamiento crítico')
     st.info('Haz iniciado el periodo de evaluación, cuentas con 10 minutos para terminar la evaluación')
     with st.form('Evaluación 1'):
         claridad=st.radio('1.-¿La claridad en el pensamiento crítico se relaciona con el hecho de entender el argumento o problema de manera clara y precisa?',['Cierto','Falso'],horizontal=True)
@@ -39,11 +40,13 @@ if ingresar ==True and contra in usuarios and nombre in claves:
         enviar=st.form_submit_button('Enviar')
         if enviar==True:
             try:
+                fecha_actual = datetime.datetime.now()
+
                 insert_query = """
-                            INSERT INTO evaluacion1 (caractpc, precision, certeza, certeza2, consistencia, consistencia2,certezalogica)
-                            VALUES (%s, %s, %s, %s, %s, %s,%s)
+                            INSERT INTO evaluacion1 (caractpc, precision, certeza, certeza2, consistencia, consistencia2,certezalogica,certezalog3)
+                            VALUES (%s, %s, %s, %s, %s, %s,%s,%s)
                             """
-                cursor.execute(insert_query, (claridad, precision, certeza, certeza2, consistencia, consistencia2,nombre))
+                cursor.execute(insert_query, (claridad, precision, certeza, certeza2, consistencia, consistencia2,nombre,fecha_actual))
 
     # Commit the changes and close the connection
                 conn.commit()

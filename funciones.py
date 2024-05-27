@@ -22,6 +22,7 @@ def crear_db(variables,tabla):
     x=cursor.fetchall()
 
     conn.commit()
+    conn.close()
     st.write(x)
 
 def insertar_db(tabla,datos):
@@ -50,6 +51,7 @@ def insertar_db(tabla,datos):
     cursor.execute(insert_query, values)
 
     conn.commit()
+    conn.close()
 
 
     # Ejemplo de valores de datos
