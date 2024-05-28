@@ -32,11 +32,20 @@ if ingresar ==True and contra in usuarios and nombre in claves:
     st.info('Haz iniciado el periodo de evaluación, cuentas con 10 minutos para terminar la evaluación')
     with st.form('Evaluación 1'):
         claridad=st.radio('1.-¿La claridad en el pensamiento crítico se relaciona con el hecho de entender el argumento o problema de manera clara y precisa?',['Cierto','Falso'],horizontal=True)
+        if claridad=='Cierto':
+            claridad=1
+        else:
+            claridad=0
         precision=st.text_input('2.-¿Cúal es la definición de precisión en el pensamiento crítico?')
+    
         certeza=st.radio('3.-¿Como se relaciona el concepto de certeza con el pensamiento crítico?',['La calidad de la información determinará la calidad de la conclusión','Saber a ciencia cierta el conocimiento base para la conclusión','Tener premisas lógicas'],horizontal=False)
+        if certeza=='La calidad de la información determinará la calidad de la conclusión':
+            certeza=1
+        else:
+            certeza=0
         certeza2=st.radio('4.-¿Si dentro de nuestro análisis de datos se ingresa información incorrecta, la conclusión será incorrecta, a que característica del pensamiento crítico pertenece esta definición?',['Precisión','Certeza','Claridad'])
         consistencia=st.radio('5.-¿Los dos tipos de consistencía son lógica y práctica ?',['Falso','Cierto'])
-        consistencia2=st.radio('6.-El siguiente argumento tiene certeza lógica, -todos los hombres son mortales, Socrates es un hombre, por lo tanto Socrates es mortal- ',['Correcto','Incorrecto'])
+        consistencia2=st.radio('6.-El siguiente argumento tiene certeza lógica, -todos los hombres son poco romanticos, Alberto es un hombre, por lo tanto Alberto es poco romántico- ',['Correcto','Incorrecto'])
         enviar=st.form_submit_button('Enviar')
         if enviar==True:
             try:
