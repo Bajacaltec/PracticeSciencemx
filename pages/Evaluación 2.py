@@ -6,7 +6,6 @@ import psycopg2
 from streamlit_lottie import st_lottie as stl
 import datetime
 import time
-import schedule
 
 
 #Base de datos
