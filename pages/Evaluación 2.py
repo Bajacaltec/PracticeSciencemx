@@ -58,7 +58,7 @@ if ingresar ==True and contra in usuarios and nombre in claves:
                             VALUES (%s, %s, %s, %s, %s, %s,%s,%s,%s,%s,%s,%s)
                             """
                 cursor.execute(insert_query, (primera, segunda, tercera, cuarta, quinta, sexta,septima,octava,novena,decima,fecha_actual,nombre))
-                cursor.execute('DELETE FROM evaluacionsegunda')
+                #cursor.execute('DELETE FROM evaluacionsegunda')
 
     # Commit the changes and close the connection
                 conn.commit()
