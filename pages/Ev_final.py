@@ -1,11 +1,14 @@
-import streamlit as st 
-import pandas as pd 
+import streamlit as st
+import csv
+import random
 import streamlit.components.v1 as components
 import openpyxl
 import psycopg2
 from streamlit_lottie import st_lottie as stl
 import datetime
 import time
+import csv
+from streamlit_pdf_viewer import pdf_viewer
 
 
 #Base de datos
@@ -32,37 +35,58 @@ counting = False
 
 usuarios = ('189')
 if ingresar ==True and contra in usuarios and nombre in claves:
+    st.subheader('Evaluación final')
 
-    # Carga el DataFrame de preguntas
-    df = pd.read_csv('examen.csv')
+    secciones=st.selectbox('Sección',['Teoría','Análisis de artículo'])
+    if secciones=='Teoría':
 
-    # Obtiene el nombre del usuario
-    nombre_usuario = st.text_input('Introduce tu nombre:')
+        # Carga el archivo CSV
+        with open('Examen.csv') as f:
+            lector = csv.reader(f)
 
-    # Crea una lista para almacenar las respuestas del usuario
-    respuestas_usuario = []
+            # Salta la primera fila (encabezados)
+            next(lector)
 
-    # Muestra cada pregunta y opciones al usuario
-    for index, row in df.iterrows():
-        pregunta = row['Pregunta']
-        opcion_1 = row['Opcion_1']
-        opcion_2 = row['Opcion_2']
-        opcion_3 = row['Opcion_3']
-        opcion_4 = row['Opcion_4']
+            # Convierte las filas en una lista
+            preguntas_csv = list(lector)
 
-        # Crea un widget de radio para que el usuario seleccione la respuesta
-        respuesta_usuario = st.radio(pregunta, [opcion_1, opcion_2, opcion_3, opcion_4])
+        # Ordena las preguntas aleatoriamente
+        random.shuffle(preguntas_csv)
 
-        # Almacena la respuesta seleccionada por el usuario
-        respuestas_usuario.append(respuesta_usuario)
+        # Crea el formulario
+        with st.form("Examen de opción múltiple"):
+            # Muestra preguntas aleatorias
+            try:
+                for i in range(45):
+                    numero_pregunta = i + 1  # Suma 1 para que el número empiece en 1
+                    pregunta = preguntas_csv[i][0]
+                    opciones = preguntas_csv[i][1].split('_')
+                    respuesta_correcta = int(preguntas_csv[i][2])
 
-    # Calcula la puntuación del usuario
-    puntuacion = 0
-    for i, respuesta in enumerate(respuestas_usuario):
-        if respuesta == df.loc[i, 'Respuesta_correcta']:
-            puntuacion += 1
+                    respuesta_usuario = st.radio(f' {numero_pregunta}.- {pregunta}', opciones)
 
-    # Muestra la puntuación del usuario
-    st.title('¡Examen finalizado!')
-    st.write(f'Nombre: {nombre_usuario}')
-    st.write(f'Puntuación: {puntuacion}/{len(df)}')
+                    
+
+                boton_enviar = st.form_submit_button("Enviar respuestas")
+
+                # Muestra el resultado si se ha enviado el formulario
+                if boton_enviar:
+                    st.success('Haz finalizado y enviado tus respuestas')
+                    st.balloons()
+
+            except:
+                st.error('Error')
+    elif secciones=='Análisis de artículo':
+        st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
+        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 20 puntos de tu examen (35 puntos teóricos/20 puntos del análisis del artículo)')
+        artículo=st.toggle('Ver artículo')
+        pdf_url = "https://url_de_tu_pdf.com"  # Reemplaza con la URL real del PDF
+
+        st.markdown(f"""
+        <iframe src="{pdf_url}" width="800" height="600" frameborder="0">
+        <p>Este navegador no es compatible con la visualización de PDF. Descarga el PDF para verlo.</p>
+        </iframe>
+        """, unsafe_allow_html=True)
+        with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
+            respuesta=st.text_area('Responde lo mejor posible en tu análisis del artículo, incluye lo siguiente: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, utilizaron muestreo, que caracteristicas tiene la población, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
+            enviar=st.form_submit_button('Enviar respuesta')
