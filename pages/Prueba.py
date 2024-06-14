@@ -29,8 +29,8 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        f=pd.read_csv('Examen.csv')
-        jul=f.to_pickle('exa.pkl')
+        #f=pd.read_csv('Examen.csv')
+        #jul=f.to_pickle('exa.pkl')
         dfu=pd.read_pickle('exa.pkl')
         st.dataframe(dfu)
         
