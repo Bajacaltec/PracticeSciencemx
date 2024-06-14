@@ -1,6 +1,17 @@
 import streamlit as st
 import csv
 import random
+import psycopg2
+import time
+
+#Base de datos
+conn = psycopg2.connect(
+                        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
+                        database="bajacaltec_ciencia",
+                        user="bajacaltec_ciencia_user",
+                        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
+                    )
+cursor=conn.cursor()
 
 st.sidebar.caption('By Baja Caltec')
 
@@ -63,13 +74,6 @@ if ingresar and contra in usuarios and nombre in claves:
             respuesta=st.text_area('Responde lo mejor posible en tu análisis del artículo, incluye lo siguiente: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, utilizaron muestreo, que caracteristicas tiene la población, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
             enviar=st.form_submit_button('Enviar respuesta')
             if enviar==True:
-                # Guardar análisis en la base de datos
-                cursor.execute("""
-                INSERT INTO ult_ev1_analisis (usuario, fecha_evaluacion, resultado_analisis)
-                VALUES (%s, %s, %s)
-                """, (nombre, datetime.datetime.now(), respuesta))
-                conn.commit()
-                conn.close()
                 st.success('Se ha enviado tu respuesta')
                 st.balloons()
             
