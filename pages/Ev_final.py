@@ -3,6 +3,7 @@ import csv
 import random
 import psycopg2
 import time
+import pandas as pd
 
 #Base de datos
 conn = psycopg2.connect(
@@ -28,17 +29,17 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        with open('https://docs.google.com/spreadsheets/d/e/2PACX-1vT7kdG4G4kcDwWQ_ULXohNFpYn81GNDgOH9qByX2kksv81beseXzcvqYBzy-EKPOP0cmKBzIxkJzgVX/pubhtml') as f:
-            lector = csv.reader(f)
+        f=pd.read_csv('https://drive.google.com/file/d/1dwil-4fehyWkjAi5OYLfmDc4oKzEUS1k/view?usp=sharing')
+        lector = csv.reader(f)
 
-            # Saltar la primera fila (encabezados)
-            next(lector)
+        # Saltar la primera fila (encabezados)
+        next(lector)
 
-            # Convertir las filas en una lista
-            preguntas_csv = list(lector)
+        # Convertir las filas en una lista
+        preguntas_csv = list(lector)
 
-            # Ordenar las preguntas aleatoriamente
-            random.shuffle(preguntas_csv)
+        # Ordenar las preguntas aleatoriamente
+        random.shuffle(preguntas_csv)
 
         respuestas_usuario = []
         
