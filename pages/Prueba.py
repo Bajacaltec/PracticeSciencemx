@@ -31,11 +31,43 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        #f=pd.read_csv('Examen.csv')
-        #jul=f.to_pickle('exa.pkl')
-        dfu=pd.read_pickle('exa.pkl')
-        st.dataframe(dfu)
-        
+        dfu = pd.read_csv('Examen.csv')
+        preguntas_csv = dfu.values.tolist()
+
+        # Ordenar las preguntas aleatoriamente
+        random.shuffle(preguntas_csv)
+
+        respuestas_usuario = []
+
+        with st.form("examen_form"):
+            for i, pregunta in enumerate(preguntas_csv[:35], start=1):
+                opciones = pregunta[1].split('_')
+                respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
+                respuestas_usuario.append((pregunta[0], respuesta_usuario))
+
+            if st.form_submit_button('Enviar'):
+                st.success('Se han enviado tus respuestas')
+                st.balloons()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     elif secciones=='Análisis de artículo':

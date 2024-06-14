@@ -14,6 +14,8 @@ conn = psycopg2.connect(
                     )
 cursor=conn.cursor()
 
+#cursor.execute('''COPY examen FROM 'Examen.csv' DELIMITER ',' CSV HEADER''')
+
 st.sidebar.caption('By Baja Caltec')
 
 Desactivar = False
@@ -29,37 +31,43 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        f=pd.read_csv('Examen.csv')
-        jul=f.to_pickle('exa.pkl')
-        dfu=pd.read_pickle('exa.pkl')
-        st.dataframe(dfu)
-        lector = csv.reader(dfu)
-
-        # Saltar la primera fila (encabezados)
-        next(lector)
-
-        # Convertir las filas en una lista
-        preguntas_csv = list(lector)
+        dfu = pd.read_pickle('exa.pkl')
+        preguntas_csv = dfu.values.tolist()
 
         # Ordenar las preguntas aleatoriamente
         random.shuffle(preguntas_csv)
 
         respuestas_usuario = []
-        
+
         with st.form("examen_form"):
-            for i in range(35):
-                numero_pregunta = i + 1
-                pregunta = preguntas_csv[i][0]
-                opciones = preguntas_csv[i][1].split('_')
+            for i, pregunta in enumerate(preguntas_csv[:35], start=1):
+                opciones = pregunta[1].split('_')
+                respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
+                respuestas_usuario.append((pregunta[0], respuesta_usuario))
 
-                respuesta_usuario = st.radio(f'{numero_pregunta}.- {pregunta}', opciones, key=f'pregunta_{i}')
-                respuestas_usuario.append((pregunta, respuesta_usuario))
-
-            boton_enviar = st.form_submit_button('Enviar')
-
-            if boton_enviar:
+            if st.form_submit_button('Enviar'):
                 st.success('Se han enviado tus respuestas')
                 st.balloons()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     elif secciones=='Análisis de artículo':
