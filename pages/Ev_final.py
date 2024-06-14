@@ -29,7 +29,7 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        f=pd.read_csv('https://drive.google.com/file/d/1dwil-4fehyWkjAi5OYLfmDc4oKzEUS1k/view?usp=sharing')
+        f=pd.read_csv('https://github.com/Bajacaltec/PracticeSciencemx/blob/main/examen.csv')
         lector = csv.reader(f)
 
         # Saltar la primera fila (encabezados)
