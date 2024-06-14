@@ -31,7 +31,7 @@ if ingresar and contra in usuarios and nombre in claves:
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
     if secciones == 'Teoría':
-        dfu = pd.read_csv('Examen.csv')
+        dfu = pd.read_csv('examen.csv')
         preguntas_csv = dfu.values.tolist()
 
         # Ordenar las preguntas aleatoriamente
