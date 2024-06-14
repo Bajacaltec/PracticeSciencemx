@@ -33,33 +33,7 @@ if ingresar and contra in usuarios and nombre in claves:
         jul=f.to_pickle('exa.pkl')
         dfu=pd.read_pickle('exa.pkl')
         st.dataframe(dfu)
-        lector = csv.reader(dfu)
-
-        # Saltar la primera fila (encabezados)
-        next(lector)
-
-        # Convertir las filas en una lista
-        preguntas_csv = list(lector)
-
-        # Ordenar las preguntas aleatoriamente
-        random.shuffle(preguntas_csv)
-
-        respuestas_usuario = []
         
-        with st.form("examen_form"):
-            for i in range(35):
-                numero_pregunta = i + 1
-                pregunta = preguntas_csv[i][0]
-                opciones = preguntas_csv[i][1].split('_')
-
-                respuesta_usuario = st.radio(f'{numero_pregunta}.- {pregunta}', opciones, key=f'pregunta_{i}')
-                respuestas_usuario.append((pregunta, respuesta_usuario))
-
-            boton_enviar = st.form_submit_button('Enviar')
-
-            if boton_enviar:
-                st.success('Se han enviado tus respuestas')
-                st.balloons()
 
 
     elif secciones=='Análisis de artículo':
