@@ -80,7 +80,7 @@ if ingresar ==True and contra in usuarios and nombre in claves:
         st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
         st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 20 puntos de tu examen (35 puntos teóricos/20 puntos del análisis del artículo)')
         artículo=st.toggle('Ver artículo')
-        pdf_url = "Colcardio.pdf"  # Reemplaza con la URL real del PDF
+        pdf_url = "https://onlinelibrary.wiley.com/share/VGMEQZUQ86GMRNYHZBZ9?target=10.1111/jocn.17325"  # Reemplaza con la URL real del PDF
 
         st.markdown(f"""
         <iframe src="{pdf_url}" width="800" height="600" frameborder="0">
