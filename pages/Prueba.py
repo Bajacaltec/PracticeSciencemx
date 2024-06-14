@@ -14,6 +14,8 @@ conn = psycopg2.connect(
                     )
 cursor=conn.cursor()
 
+#cursor.execute('''COPY examen FROM 'Examen.csv' DELIMITER ',' CSV HEADER''')
+
 st.sidebar.caption('By Baja Caltec')
 
 Desactivar = False
