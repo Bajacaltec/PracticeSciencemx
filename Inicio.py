@@ -26,6 +26,8 @@ if ingresar ==True and contra in usuarios:
             global variables
             variables = {}
             for i in range(num_variables):
+                numero_pregunta = i + 1  # Suma 1 para que el número empiece en 1
+    # ... (resto del código
                 variable_name = st.text_input(f"Nombre de la variable {i + 1}:")
                 if variable_name != "":
                     variable_type = st.selectbox(f"Tipo de dato de {variable_name}:", options=["VARCHAR", "INTEGER", "FLOAT", ...])
