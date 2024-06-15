@@ -30,6 +30,9 @@ if ingresar and contra in usuarios and nombre in claves:
     st.subheader('Evaluación final')
 
     secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
+
+
+
     if secciones == 'Teoría':
         dfu = pd.read_csv('examen.csv')
         preguntas_csv = dfu.values.tolist()
@@ -38,19 +41,51 @@ if ingresar and contra in usuarios and nombre in claves:
         random.shuffle(preguntas_csv)
 
         respuestas_usuario = []
+        calificacion_total = 0
 
         with st.form("examen_form"):
-            for i, pregunta in enumerate(preguntas_csv[:35], start=1):
+            for i, pregunta in enumerate(preguntas_csv[:10], start=1):
                 opciones = pregunta[1].split('_')
                 respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
-                respuestas_usuario.append((pregunta[0], respuesta_usuario))
+
+                # Crear un diccionario con la pregunta, respuesta y calificación
+                calificacion_pregunta = 1 if respuesta_usuario == pregunta[2] else 0
+                pregunta_con_respuesta = {
+                    "Pregunta": pregunta[0],
+                    "Respuesta": respuesta_usuario,
+                    "Calificación": calificacion_pregunta
+                }
+
+                # Agregar el diccionario a la lista y actualizar la calificación total
+                respuestas_usuario.append(pregunta_con_respuesta)
+                calificacion_total += calificacion_pregunta
 
             if st.form_submit_button('Enviar'):
+
+                cursor.execute('''CREATE TABLE IF NOT EXISTS resultados_1examen (
+                    id_usuario INT PRIMARY KEY NOT NULL,
+                    pregunta TEXT NOT NULL,
+                    respuesta TEXT NOT NULL,
+                    calificacion_pregunta INT NOT NULL,
+                    calificacion_total INT NOT NULL
+                )''')
+                conn.commit()
+                resp=str(respuestas_usuario)
+            
+                consulta = """
+                    INSERT INTO resultados_1examen (id_usuario, pregunta,respuesta,calificacion_pregunta, calificacion_total)
+                    VALUES (%s, %s, %s,%s,%s)
+                """
+                valores = (nombre,resp,resp,1,calificacion_total)
+                cursor.execute(consulta,valores)
+            
+                conn.commit()
+                conn.close()
+
                 st.success('Se han enviado tus respuestas')
                 st.balloons()
 
-
-
+#Falta hacer que califique automaticamente
 
 
 
