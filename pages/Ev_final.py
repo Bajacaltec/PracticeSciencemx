@@ -43,13 +43,26 @@ if ingresar and contra in usuarios and nombre in claves:
         respuestas_usuario = []
         calificacion_total = 0
 
+    if secciones == 'Teoría':
+        dfu = pd.read_csv('examen.csv')
+        preguntas_csv = dfu.values.tolist()
+
+        # Ordenar las preguntas aleatoriamente
+        random.shuffle(preguntas_csv)
+
+        respuestas_usuario = []
+        calificacion_total = 0
+
         with st.form("examen_form"):
-            for i, pregunta in enumerate(preguntas_csv[:10], start=1):
+            for i, pregunta in enumerate(preguntas_csv[:25], start=1):
                 opciones = pregunta[1].split('_')
                 respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
 
+                # Crear un mapeo de opciones a índices
+                indice_opciones = {opcion: indice for indice, opcion in enumerate(opciones)}
+
                 # Crear un diccionario con la pregunta, respuesta y calificación
-                calificacion_pregunta = 1 if respuesta_usuario == pregunta[2] else 0
+                calificacion_pregunta = 1 if indice_opciones[respuesta_usuario] == int(pregunta[2]) else 0
                 pregunta_con_respuesta = {
                     "Pregunta": pregunta[0],
                     "Respuesta": respuesta_usuario,
@@ -60,30 +73,42 @@ if ingresar and contra in usuarios and nombre in claves:
                 respuestas_usuario.append(pregunta_con_respuesta)
                 calificacion_total += calificacion_pregunta
 
-            if st.form_submit_button('Enviar'):
+            enviar = st.form_submit_button('Enviar')
 
-                cursor.execute('''CREATE TABLE IF NOT EXISTS resultados_1examen (
-                    id_usuario INT PRIMARY KEY NOT NULL,
-                    pregunta TEXT NOT NULL,
-                    respuesta TEXT NOT NULL,
-                    calificacion_pregunta INT NOT NULL,
-                    calificacion_total INT NOT NULL
-                )''')
-                conn.commit()
-                resp=str(respuestas_usuario)
-            
-                consulta = """
-                    INSERT INTO resultados_1examen (id_usuario, pregunta,respuesta,calificacion_pregunta, calificacion_total)
-                    VALUES (%s, %s, %s,%s,%s)
-                """
-                valores = (nombre,resp,resp,1,calificacion_total)
-                cursor.execute(consulta,valores)
-            
-                conn.commit()
-                conn.close()
+        if enviar==True:
 
-                st.success('Se han enviado tus respuestas')
-                st.balloons()
+            cursor.execute('''CREATE TABLE IF NOT EXISTS resultados_1examen (
+                id_usuario INT PRIMARY KEY NOT NULL,
+                pregunta TEXT NOT NULL,
+                respuesta TEXT NOT NULL,
+                calificacion_pregunta INT NOT NULL,
+                calificacion_total INT NOT NULL
+            )''')
+            conn.commit()
+            resp=str(respuestas_usuario)
+        
+            consulta = """
+                INSERT INTO resultados_1examen (id_usuario, pregunta,respuesta,calificacion_pregunta, calificacion_total)
+                VALUES (%s, %s, %s,%s,%s)
+            """
+            valores = (nombre,resp,resp,1,calificacion_total)
+            cursor.execute(consulta,valores)
+        
+            conn.commit()
+            conn.close()
+
+            st.success('Se han enviado tus respuestas')
+            st.balloons()
+
+#Falta hacer que califique automaticamente
+
+
+
+
+
+
+
+
 
 
 
@@ -97,7 +122,7 @@ if ingresar and contra in usuarios and nombre in claves:
 
     elif secciones=='Análisis de artículo':
         st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
-        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 20 puntos de tu examen (35 puntos teóricos/20 puntos del análisis del artículo)')
+        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 15 puntos de tu examen (25 puntos teóricos/15 puntos del análisis del artículo)')
         artículo=st.toggle('Ver artículo')
         if artículo==True:
             pdf_url='https://docs.google.com/document/d/e/2PACX-1vRPG6brmZTCJ4bbmUF_xa_od7XyTHBL6B6Cmqa8LVQBiQF6nF51z9NFOojbWauKUj0k-fr8IQrIwRyC/pub '
@@ -108,7 +133,7 @@ if ingresar and contra in usuarios and nombre in claves:
             </iframe>
             """, unsafe_allow_html=True)
         with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
-            respuesta=st.text_area('Responde lo mejor posible en tu análisis del artículo, incluye lo siguiente: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, utilizaron muestreo, que caracteristicas tiene la población, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
+            respuesta=st.text_area('Incluye lo siguiente en tu respuesta: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, ¿utilizaron muestreo?, ¿qué características tiene la población?, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
             enviar=st.form_submit_button('Enviar respuesta')
 
 
