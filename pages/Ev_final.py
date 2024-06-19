@@ -54,7 +54,7 @@ if ingresar and contra in usuarios and nombre in claves:
         calificacion_total = 0
 
         with st.form("examen_form"):
-            for i, pregunta in enumerate(preguntas_csv[:25], start=1):
+            for i, pregunta in enumerate(preguntas_csv[:20], start=1):
                 opciones = pregunta[1].split('_')
                 respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
 
@@ -122,7 +122,7 @@ if ingresar and contra in usuarios and nombre in claves:
 
     elif secciones=='Análisis de artículo':
         st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
-        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 15 puntos de tu examen (25 puntos teóricos/15 puntos del análisis del artículo)')
+        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 15 puntos de tu examen (20 puntos teóricos/15 puntos del análisis del artículo)')
         artículo=st.toggle('Ver artículo')
         if artículo==True:
             pdf_url='https://docs.google.com/document/d/e/2PACX-1vRPG6brmZTCJ4bbmUF_xa_od7XyTHBL6B6Cmqa8LVQBiQF6nF51z9NFOojbWauKUj0k-fr8IQrIwRyC/pub '
@@ -133,7 +133,7 @@ if ingresar and contra in usuarios and nombre in claves:
             </iframe>
             """, unsafe_allow_html=True)
         with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
-            respuesta=st.text_area('Incluye lo siguiente en tu respuesta: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, ¿utilizaron muestreo?, ¿qué características tiene la población?, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
+            respuesta=st.text_area('Incluye lo siguiente en tu respuesta: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, ¿que tipo?), ¿Qué tipo de estudio es? (exploratorio, descriptivo, correlacional, explicativo), ¿que variables independientes y dependiente observas?, ¿utilizaron muestreo?, ¿qué características tiene la población?, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
             enviar=st.form_submit_button('Enviar respuesta')
 
 
