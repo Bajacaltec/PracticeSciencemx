@@ -2,8 +2,15 @@ import streamlit as st
 import pandas as pd 
 import numpy as np
 import funciones
+import psycopg2
 st.sidebar.subheader('Practice science')
-
+conn = psycopg2.connect(
+                        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
+                        database="bajacaltec_ciencia",
+                        user="bajacaltec_ciencia_user",
+                        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
+                    )
+cursor=conn.cursor()
 st.sidebar.caption('By Baja Caltec')
 
 Desactivar=False
@@ -46,3 +53,18 @@ if ingresar ==True and contra in usuarios:
                         st.error(f'Error: {e}')
         with col2:
             st.write(variables)
+    with st.expander('Ver tablas'):
+        st.subheader('Ver tablas')
+        ver=st.toggle('Ver tablas')
+        if ver==True:
+            nombre_de_tabla=st.text_input('')
+            tablas=f'''SELECT * FROM {nombre_de_tabla} '''
+            dbdf=pd.read_sql(tablas,conn)
+            st.dataframe(dbdf,width=900)
+            for index, row in dbdf.iterrows():
+                st.write(row)
+
+            
+
+            
+
