@@ -2,7 +2,15 @@ import streamlit as st
 import pandas as pd 
 import numpy as np
 import psycopg2
-
+import datetime
+def conectar_base_de_datos():
+    conn = psycopg2.connect(
+        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
+        database="bajacaltec_ciencia",
+        user="bajacaltec_ciencia_user",
+        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
+    )
+    return conn
 def crear_db(variables,tabla):
     conn = psycopg2.connect(
                         host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
@@ -63,3 +71,44 @@ def generate_variable_inputs(num_variables):
             variable_type = st.selectbox(f"Tipo de dato de {variable_name}:", options=["VARCHAR", "INTEGER", "FLOAT", ...])
             variables[variable_name] = variable_type
     return variables
+
+def ejercicio_articulos(nombre,pdf):
+    st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
+    artículo=st.toggle('Ver artículo')
+    if artículo==True:
+        st.markdown(f"""
+        <iframe src="{pdf}" width="800" height="600" frameborder="0">
+        <p>Este navegador no es compatible con la visualización de PDF. Descarga el PDF para verlo.</p>
+        </iframe>
+        """, unsafe_allow_html=True)
+    col1,col2=st.columns([3,1])
+    with col1:
+        with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
+            respuesta=st.text_area('Haz un análisis del artículo que incluya lo que se muestra a la derecha',height=600)
+            enviar=st.form_submit_button('Enviar respuesta')
+            conn=conectar_base_de_datos()
+
+
+            if enviar==True:
+                # Obtener la fecha actual
+                fecha = datetime.datetime.now()
+                cursor=conn.cursor()
+                # Preparar la consulta SQL
+                query = "INSERT INTO ult_ev1_analisis (usuario,fecha_evaluacion, resultado_analisis) VALUES (%s,%s, %s)"
+
+                # Ejecutar la consulta SQL
+                cursor.execute(query, (nombre,fecha, respuesta))
+
+                # Hacer commit de la transacción
+                conn.commit()
+
+                st.success('Se ha enviado tu respuesta')
+                st.balloons()
+    with col2:
+        st.info('Objetivo de investigación')
+        st.info('Problema de investigación')
+        st.info('Justificación')
+        st.info('Hipótesis')
+        st.info('Muestra y población')
+        st.info('Tipo de diseño (Experimental, exploratorio, descriptivo, causal)')
+        st.info('Errores metodológicos')
