@@ -49,7 +49,7 @@ ingresar = st.sidebar.toggle('Ingresar')
 
 # Verificación del usuario
 usuario = next((user for user, codigo in usuarios_accesos.items() if codigo == int(acceso)), None)
-pdf_url='https://docs.google.com/document/d/e/2PACX-1vRPG6brmZTCJ4bbmUF_xa_od7XyTHBL6B6Cmqa8LVQBiQF6nF51z9NFOojbWauKUj0k-fr8IQrIwRyC/pub '
+pdf_url='https://www.scielo.org.mx/scielo.php?pid=S2007-78902021000200050&script=sci_arttext '
 if ingresar and usuario:
     st.sidebar.write(f'''Bienvenid@ {usuario}''')
     clases = [f'Clase {i}' for i in range(1, 8)]
@@ -57,4 +57,10 @@ if ingresar and usuario:
     with tab1:
         st.subheader('Clase 1 Obtención de datos')
         funciones.ejercicio_articulos(usuario,pdf_url)
+    with tab2:
+        articulo2='https://www.medigraphic.com/pdfs/enfermeriaimss/eim-2020/eim201d.pdf'
+        st.subheader('Clase 2 Estadística descriptiva')
+        funciones.ejercicio_articulos(usuario,articulo2)
+
+
 

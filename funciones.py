@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import psycopg2
 import datetime
+
+
 def conectar_base_de_datos():
     conn = psycopg2.connect(
         host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
@@ -73,14 +75,18 @@ def generate_variable_inputs(num_variables):
     return variables
 
 def ejercicio_articulos(nombre,pdf):
+    key3=np.random.rand
     st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
-    artículo=st.toggle('Ver artículo')
+    tiempo=datetime.datetime.now().strftime('%y-%m.%d %H:%M:%S')
+    artículo=st.toggle('Ver artículo',key=key3)
     if artículo==True:
         st.markdown(f"""
         <iframe src="{pdf}" width="800" height="600" frameborder="0">
         <p>Este navegador no es compatible con la visualización de PDF. Descarga el PDF para verlo.</p>
         </iframe>
         """, unsafe_allow_html=True)
+    key1=np.random.rand
+    key2=np.random.rand
     col1,col2=st.columns([3,1])
     with col1:
         with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
