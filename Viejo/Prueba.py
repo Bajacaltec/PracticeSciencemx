@@ -1,154 +1,81 @@
 import streamlit as st
-import csv
-import random
 import psycopg2
 import datetime
-import pandas as pd
 
-#Base de datos
-conn = psycopg2.connect(
-                        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
-                        database="bajacaltec_ciencia",
-                        user="bajacaltec_ciencia_user",
-                        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
-                    )
-cursor=conn.cursor()
+# Función para conectar a la base de datos
+def conectar_base_de_datos():
+    conn = psycopg2.connect(
+        host="dpg-cokdc7gl5elc73c3klp0-a.oregon-postgres.render.com",
+        database="bajacaltec_ciencia",
+        user="bajacaltec_ciencia_user",
+        password="QnVGnpcQGxEr7q9W3YDiPS4ABxSTkAVn"
+    )
+    return conn
 
-#cursor.execute('''COPY examen FROM 'Examen.csv' DELIMITER ',' CSV HEADER''')
+# Diccionario de permisos de usuario
+usuarios_accesos = {
+    'fernando': 1111,
+    "Alamillo Martínez María Aurelia (Baja)": 9275,
+    "Alarcón Martínez Laura Patricia": 3568,
+    # Resto de los usuarios...
+}
 
+# Conectar a la base de datos
+base = conectar_base_de_datos()
+
+# Interfaz principal
+st.sidebar.title('Practice sciencemx')
 st.sidebar.caption('By Baja Caltec')
 
-Desactivar = False
-nombre = st.sidebar.number_input('clave de alumno', step=1)
-contra = st.sidebar.text_input('Contraseña', type='password')
-claves = [1258, 1705, 2019, 2810, 3471, 3568, 4269, 5024, 5937, 6357, 6893, 7149, 7412, 8532, 8731, 9175, 9186, 9275, 9624, 9803, 1111, 9999]
+# Entrada de código de acceso
+acceso = int(st.sidebar.text_input('Codigo de acceso', type='password'))
+ingresar = st.sidebar.toggle('Ingresar')
 
-ingresar = st.sidebar.toggle('Ingresar', disabled=Desactivar)
-usuarios = ('189',)  # Asegurarse de que 'usuarios' sea una tupla
+# Verificación del usuario
+usuario = next((user for user, codigo in usuarios_accesos.items() if codigo == acceso), None)
 
-if ingresar and contra in usuarios and nombre in claves:
-    st.subheader('Evaluación final')
+if ingresar and usuario:
+    st.sidebar.write(f'''Bienvenid@ {usuario}''')
+    clases = [f'Clase {i}' for i in range(1, 8)]
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.sidebar.tabs(clases)
 
-    secciones = st.selectbox('Sección', ['Teoría', 'Análisis de artículo'])
+    # Artículo 1
+    pdf_url = 'https://www.scielo.org.mx/scielo.php?pid=S2007-78902021000200050&script=sci_arttext'
+    with tab1:
+        st.subheader('Artículo 1 Estudio descriptivo')
+        st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos.')
+        tiempo = datetime.datetime.now().strftime('%y-%m.%d %H:%M:%S')
+        artículo = st.checkbox('Ver artículo', key=123)
 
-
-
-    if secciones == 'Teoría':
-        dfu = pd.read_csv('examen.csv')
-        preguntas_csv = dfu.values.tolist()
-
-        # Ordenar las preguntas aleatoriamente
-        random.shuffle(preguntas_csv)
-
-        respuestas_usuario = []
-        calificacion_total = 0
-
-    if secciones == 'Teoría':
-        dfu = pd.read_csv('examen.csv')
-        preguntas_csv = dfu.values.tolist()
-
-        # Ordenar las preguntas aleatoriamente
-        random.shuffle(preguntas_csv)
-
-        respuestas_usuario = []
-        calificacion_total = 0
-
-        with st.form("examen_form"):
-            for i, pregunta in enumerate(preguntas_csv[:25], start=1):
-                opciones = pregunta[1].split('_')
-                respuesta_usuario = st.radio(f'{i}.- {pregunta[0]}', opciones, key=f'pregunta_{i-1}')
-
-                # Crear un mapeo de opciones a índices
-                indice_opciones = {opcion: indice for indice, opcion in enumerate(opciones)}
-
-                # Crear un diccionario con la pregunta, respuesta y calificación
-                calificacion_pregunta = 1 if indice_opciones[respuesta_usuario] == int(pregunta[2]) else 0
-                pregunta_con_respuesta = {
-                    "Pregunta": pregunta[0],
-                    "Respuesta": respuesta_usuario,
-                    "Calificación": calificacion_pregunta
-                }
-
-                # Agregar el diccionario a la lista y actualizar la calificación total
-                respuestas_usuario.append(pregunta_con_respuesta)
-                calificacion_total += calificacion_pregunta
-
-            enviar = st.form_submit_button('Enviar')
-
-        if enviar==True:
-
-            cursor.execute('''CREATE TABLE IF NOT EXISTS resultados_1examen (
-                id_usuario INT PRIMARY KEY NOT NULL,
-                pregunta TEXT NOT NULL,
-                respuesta TEXT NOT NULL,
-                calificacion_pregunta INT NOT NULL,
-                calificacion_total INT NOT NULL
-            )''')
-            conn.commit()
-            resp=str(respuestas_usuario)
-        
-            consulta = """
-                INSERT INTO resultados_1examen (id_usuario, pregunta,respuesta,calificacion_pregunta, calificacion_total)
-                VALUES (%s, %s, %s,%s,%s)
-            """
-            valores = (nombre,resp,resp,1,calificacion_total)
-            cursor.execute(consulta,valores)
-        
-            conn.commit()
-            conn.close()
-
-            st.success('Se han enviado tus respuestas')
-            st.balloons()
-
-#Falta hacer que califique automaticamente
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    elif secciones=='Análisis de artículo':
-        st.markdown('El siguiente ejercicio tiene como propósito evaluar la capacidad del estudiante para analizar las diferentes partes de un artículo de investigación y aplicar los conocimientos teóricos')
-        st.caption('Lee con atención el artículo de investigación y responde las preguntas, el valor de este ejercicio es de 15 puntos de tu examen (25 puntos teóricos/15 puntos del análisis del artículo)')
-        artículo=st.toggle('Ver artículo')
-        if artículo==True:
-            pdf_url='https://docs.google.com/document/d/e/2PACX-1vRPG6brmZTCJ4bbmUF_xa_od7XyTHBL6B6Cmqa8LVQBiQF6nF51z9NFOojbWauKUj0k-fr8IQrIwRyC/pub '
-
+        if artículo:
             st.markdown(f"""
             <iframe src="{pdf_url}" width="800" height="600" frameborder="0">
-            <p>Este navegador no es compatible con la visualización de PDF. Descarga el PDF para verlo.</p>
             </iframe>
-            """, unsafe_allow_html=True)
-        with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
-            respuesta=st.text_area('Incluye lo siguiente en tu respuesta: objetivos del estudio, justificación, problema, hipótesis, tipo de enfoque (experimental, no experimental, que tipo), consideras que es un estudio exploratorio, descriptivo, correlacional, explicativo, que variables independientes y dependiente observas, ¿utilizaron muestreo?, ¿qué características tiene la población?, identificas criterios de inclusión y exclusión, alguna observacion respecto a la metodología',height=600)
-            enviar=st.form_submit_button('Enviar respuesta')
+            """)
 
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            with st.form('Escribe lo mas extensamente que puedas lo siguientes'):
+                respuesta = st.text_area('Haz un análisis del artículo que incluya lo que se muestra a la derecha', height=600)
+                enviar = st.form_submit_button('Enviar respuesta')
 
-            if enviar==True:
-                # Obtener la fecha actual
-                fecha = datetime.datetime.now()
+                if enviar:
+                    # Obtener la fecha actual
+                    fecha = datetime.datetime.now()
 
-                # Preparar la consulta SQL
-                query = "INSERT INTO ult_ev1_analisis (usuario,fecha_evaluacion, resultado_analisis) VALUES (%s,%s, %s)"
+                    # Preparar la consulta SQL
+                    cursor = base.cursor()
+                    query = "INSERT INTO ult_ev1_analisis (usuario, fecha_evaluacion, resultado_analisis) VALUES (%s, %s, %s)"
 
-                # Ejecutar la consulta SQL
-                cursor.execute(query, (nombre,fecha, respuesta))
+                    # Ejecutar la consulta SQL
+                    cursor.execute(query, (usuario, fecha, respuesta))
 
-                # Hacer commit de la transacción
-                conn.commit()
+                    # Hacer commit de la transacción
+                    base.commit()
 
-                st.success('Se ha enviado tu respuesta')
-                st.balloons()
+                    st.success('Se ha enviado tu respuesta')
+                    st.balloons()
+
+        with col2:
+            st.expander('Instrucciones')
+            st.markdown('En este ejercicio debes incluir lo siguiente como parte del análisis del artículo: ')
