@@ -1,0 +1,65 @@
+Pregunta,Opciones,Respuesta,Tema
+¿Quién desarrollo el método dialéctico?,Platon_Aristóteles_Sócrates_Parmenides,2,Historia
+¿Quién desarrollo el silogismo?,Platon_Aristóteles_Sócrates_Parmenides,1,Historia
+"Propuso que existe un mundo de las ideas, que nacemos con conocimiento innato de este mundo y lo explicó con la alegoría de la cueva ",Platon_Aristóteles_Sócrates_Parmenides,0,Historia
+Parte del proyecto de investigación donde se delimita el problema del estudio,Justificación_Planteamiento del problema_Hipótesis_Objetivos,1,Anteproyecto
+"En esta parte del proyecto de investigación se enuncia lo que se desea conocer, buscar y lo que se pretende realizar en la investigación, suele utilizarse palabras en infinitivo como Obtener, Identificar, Evaluar",Justificación_Planteamiento del problema_Hipótesis_Objetivos,3,Anteproyecto
+En esta parte del anteproyecto se busca plasmar la relevancia y la importancia de llevar a cabo una investigación en el tema propuesto',Justificación_Planteamiento del problema_Hipótesis_Objetivos,0,Anteproyecto
+"Francis Bacon se refería a las barreras psicológicas para el desarrollo de la investigación como Ídolos, la tendencia a generalizar y ser afectados por los dogmas científicos son parte de sus enunciados, Cierto o Falso",Cierto_Falso,0,Historia
+"Parte del anteproyecto, es una proposición tentativa acerca de las relaciones entre dos o más variables y se apoyan en conocimientos organizados y sistematizados. ",Justificación_Planteamiento del problema_Hipótesis_Objetivos,2,Anteproyecto
+En los estudios descriptivos esta parte del anteproyecto es opcional.,Justificación_Planteamiento del problema_Hipótesis_Objetivos,2,Anteproyecto
+"Las hipótesis se recomienda que sigan el siguiente patron SMART(Específica, medible, alcanzable, relevante, tiempo=",Cierto_Falso,0,Anteproyecto
+Un sesgo se refiere a una tendencia sistemática que distorsiona los resultados de un estudio o la interpretación de los datos,Cierto_Falso,0,Sesgos
+El origen de los sesgos se cree que proviene de un desarrollo mental avanzado,Cierto_Falso,1,Sesgos
+Tendencia a buscar información que confirme nuestras preconcepciones,Confirmación_Encuadre_Exposición_Ilusión de correlación,0,Sesgos
+Percibir una relación entre dos eventos por prejuicios o por procesamiento selectivo de información,Confirmación_Encuadre_Exposición_Ilusión de correlación,3,Sesgos
+Preferencia por cosas debido a la familiaridad con ellas,Confirmación_Encuadre_Exposición_Ilusión de correlación,2,Sesgos
+"Sesgo qué nos lleva a tomar decisiones diferentes o a sacar conclusiones distintas a partir de la misma información, dependiendo de cómo ésta sea presentada",Confirmación_Encuadre_Exposición_Ilusión de correlación,1,Sesgos
+Método para reducir los sesgos de selección,Aleatorización_Selección no probabilística_Anonimato_Seleccionar personalmente,0,Sesgos
+"Part del anteproyecto, se define como compendio escrito de artículos, libros y otros documentos que describen el estado pasado y actual del conocimiento sobre el problema de estudio.",Marco teórico_Planteamiento del problema_Hipótesis_Objetivos,0,Anteproyecto
+"En esta fase del anteproyecto es posible identificar nuevas variables, comparar métodos de recolección de variables, saber en que estado se encuentra el conocimiento del tema de interés",Marco teórico_Planteamiento del problema_Hipótesis_Objetivos,0,Anteproyecto
+"En la piramide del nivel de evidencia, los metanalisis se encuentran debajo de la serie de casos",Cierto_Falso,1,Evidencia
+Los métodos estándar sugeridos para el desarrollo del marco teórico incluye la conceptualización en mapas y la vertebración de temas y subtemas.,Cierto_Falso,0,Anteproyecto
+"En referencia a los tipos de enfoques y definiciones del alcance de una investigación, los __________________ se realizan cuando el objetivo es examinar un tema o problema de investigación poco estudiado
+",Exploratorio_Descriptivo_Correlacional_Experimental,0,Definición del alcance
+"Este tipo de enfoque de investigación nos permite: familiarizamos con fenómenos relativamente desconocidos,
+obtener información sobre la posibilidad de llevar a cabo una investigación, investigar nuevos problemas, identificar conceptos o variables promisorias, establecer prioridades para investigaciones futuras, o sugerir afirmaciones y postulados",Exploratorio_Descriptivo_Correlacional_Experimental,0,Definición del alcance
+"Este tipo de estudios buscan especificar las propiedades, las características y los perfiles de personas, grupos, comunidades, procesos, objetos o cualquier otro fenómeno que se someta a un análisis.",Exploratorio_Descriptivo_Correlacional_Experimental,1,Definición del alcance
+"Este tipo de estudios son útiles  para mostrar con precisión los ángulos o dimensiones de un fenómeno, suceso, comunidad, contexto o situación",Exploratorio_Descriptivo_Correlacional_Experimental,1,Definición del alcance
+"Este tipo de estudio busca conocer la relación o grado de asociación que exista entre dos o más conceptos, categorías o variables en un contexto en particular.
+",Exploratorio_Descriptivo_Correlacional_Experimental,2,Definición del alcance
+"Este tipo de estudio van más allá de la descripción de conceptos o fenómenos o del establecimiento de relaciones entre conceptos; es decir, están dirigidos a responder por las causas de los eventos y fenómenos físicos o sociales.
+",Exploratorio_Descriptivo_Correlacional_Experimental,3,Definición del alcance
+"Se define como: Plan o estrategia que se desarrolla para obtener la información que se requiere en una investigación y responder al planteamiento
+",Diseño de investigación_Marco teórico_Planteamiento del probelma_Pregunta de investigación,0,Diseño
+"Existen dos grandes tipos de diseños de investigación, experimentales y no experimentales",Cierto_Falso,0,Diseño
+Los siguientes se consideran diseños no experimentales,Preexperimentos_Experimentos puros_Transversales_Longitudinales,2,Diseño
+"Situación de control en la cual se manipulan, de manera intencional, una o más variables independientes (causas) para analizar las consecuencias de tal manipulación sobre una o más variables dependientes (efectos).
+",Experimento_Estudio descriptivo_Planteamiento del problema_Diseño de investigación,0,Experimentos
+"Son limitantes para realizar un enfoque experimental:cuando no se pueden manipular los factores participantes
+, estudios retrospectivos, estudios peligrosos o que violenten los derechos humanos, cierto o falso
+
+",Cierto_Falso,0,Experimentos
+"Son requisitos de un experimento, excepto",Manipulación de una o más variables independientes_Capacidad para medir el efecto de la manipulación de la variable independiente_Contar con validez interna_Voluntarios como parte de los grupos,3,Experimentos
+"La inestabilidad del ambiente experimental, es decir una exposición a un cambien diferente entre los participantes de un experimento es causa de invalidación interna, cierto o falso ",Cierto_Falso,0,Experimentos
+"Una fuente importante de invalidación interna de un experimento, es que los grupos sean iguales entre si",Cierto_Falso,1,Experimentos
+Una fuente de invalidación interna de un experimento es una diferencia en el actuar de los investigadores favoreciendo a un grupo sobre el otro,Cierto_Falso,0,Experimentos
+"La aleatorización a los grupos de investigación en un enfoque experimental permite alcanzar la equivalencia inicial,",Cierto_Falso,0,Experimentos
+"Los diseños experimentales tienen las siguientes clasificaciones, excepto",Preexperimentos_Experimentos puros_Transversales_Cuasiexperimentos,2,Experimentos
+"Dentro de los diseños experimentales existe un tipo en el cual no existe un grupo de control y solo se experimenta sobre un grupo, esto es considerado un diseño preexperimental y suele utilizarse como primer acercamiento a un problema",Cierto_Falso,0,Experimentos
+"A diferencia de los preexperimentos o cuasiexperimentos, los experimentos puros logran el control y la validez interna al cumplir con dos características: Tener un control o grupo de comparación y la equivalencia entre grupos",Cierto_Falso,0,Experimentos
+"Este tipo de diseño permite cuantificar el efecto de la intervención y la preprueba, suele emplear dos grupos control y dos grupos experimentales","Diseño con posprueba_Diseño con preprueba, intervención, posprueba y grupo control, Diseño de Solomon, Diseños de series cronológicas múltiples",2,Experimentos
+"La característica de un cuasiexperimento contra un experimento puro o preexperimento, es que no se logra la asignación aleatoria de los sujetos a los grupos debido a que estos ya se encuentran formados",Cierto_Falso,0,Experimentos
+"Lo siguiente se define como validez externa: ‘Posibilidad de generalizar los resultados de un experimento a situaciones no experimentales, así como a otras personas, casos y poblaciones’.
+",Cierto_Falso,0,Experimentos
+Investigaciones que recopilan datos en un momento único,Transverales_Longitudinales_Correlacionales_Tendencia,0,No experimentales
+"Estudios que recaban datos en diferentes puntos del tiempo, para realizar inferencias acerca de la evolución del problema de investigacion o fenómeno, sus causas y sus efectos.
+",Transverales_Longitudinales_Correlacionales_Tendencia,1,No experimentales
+En todas las investigaciones utilizamos el muestreo,Cierto_Falso,1,Muestreo
+"El muestreo se utiliza para disminuir el consumo de recursos, y hacer que poblaciones que en la realidad no podrían ser analizados por su alto número de datos pueda ser investigada",Cierto_Falso,0,Muestreo
+"Es un subconjunto de elementos que pertenece a un conjunto con características determinadas, llamado población.",Muestra_Población_Selección_Criterios de exclusión,0,Muestreo
+"Es el tipo de muestreo en el que todos los elementos de la población tienen la misma posibilidad de ser escogidos para la muestra
+",Probabilística_No probabilística_Muestra_Población,0,Muestreo
+"La operacionalización de una variable consiste en el paso de una variable teórica a indicadores empíricos verificables y medibles.
+",Cierto_Falso,0,Operacionalización
+"Según Lazarsfeld las siguientes son las fases de operacionalización de variables: representación teórica, especificación del concepto, selección de indicadores, elaboración de índices",Cierto_Falso,0,Operacionalización
