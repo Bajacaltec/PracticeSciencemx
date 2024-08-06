@@ -1,0 +1,41 @@
+Pregunta,Opciones,Respuesta,Tema
+¿Qué es la estadística?,"Rama de las matemáticas que se encarga de la recogida, ordenación y presentación de datos_Rama de las matemáticas que se encarga puramente de la inferencia_Rama de las matemáticas que se encarga del análisis de medias y promedios_Rama de las matemáticas que se encarga de la descripción de poblaciones",1,Estadística
+Se define como la muestra de un proyecto de investigación,Número de personas incluidas en un proyecto de investigación_Número de observaciones de un proyecto de investigación_Subconjunto de observaciones que suelen ser representativas de la población_Conjunto de obvservaciones totales que cuentan con las características de interés,3,Estadística
+El género definido con las siguientes opciones: hombre o mujer. Es un tipo de variable,Ordinal_Nominal_Discreta_Continua,2,Variables
+"La escolaridad (primaria, secundaria, etc.) es una variable de tipo",Ordinal_Nominal_Discreta_Continua,1,Variables
+La edad medida en años cumplidos es una variable de tipo,Ordinal_Nominal_Discreta_Continua,3,Variables
+El peso medido en kg (ej 26.4 kg) es una variable de tipo,Ordinal_Nominal_Discreta_Continua,4,Variables
+Las variable cualitativas suelen describirse con uno de los siguientes tipos de datos,Media_Mediana_Frecuencia absoluta_Varianza,3,Variables
+"Es una medida de tendencia central que utiliza el valor de todos los datos y los suma, para posteriormente dividirlo entre el número de datos (suma(x1+x2+x3….)/n",Media_Mediana_Frecuencia absoluta_Varianza,1,Estadística
+"Medida de tendencia central que separa los datos a la mitad, es decir en el percentil 50",Media_Mediana_Frecuencia absoluta_Varianza,2,Estadística
+Medida de tendencia central que describe el valor con el mayor número de incidencias (frecuencia),Media_Mediana_Moda_Varianza,3,Estadística
+Es una desventaja de utilizar la media,Es demasiado generalista_Es confusa en la mayoría de las variables cualitativas_Requiere la desviación estandar_Es afectada por los valores extremos (outliers),4,Estadística
+"Es parte de las medidas de dispersión, utiliza los valores extremos para intentar describir la dispersión de datos (valor máximo-valor mínimo= x)",Rango_Desviación estandar_Varianza_Intervalo de confianza,1,Estadística
+"Medida de dispersión, que se escribe en las mismas unidades de los datos de origen y permite describir la variabilidad de los datos a partir de la media",Rango_Desviación estandar_Varianza_Intervalo de confianza,2,Estadística
+Es el cuadrado de la desviación estándar ,Rango_Desviación estandar_Varianza_Intervalo de confianza,3,Estadística
+La siguiente no es una característica de la distribución normal,Simetría_Alta curtosis_Forma de campana_Descubierta por Friederich Gauss,2,Estadística
+"Como se comporta la media, mediana y moda en una distribución normal ideal","Mediana mayor a la moda_Tanto la mediana, la media y la moda son iguales_La moda es 2 desviaciones estándar mas elevada que la media_La media y la moda coinciden y la mediana es mayor",2,Estadística
+El intervalo de confianza es el rango de valores que pueden contener el valor real,Cierto_Falso,1,Estadística
+La media se considera una estimación puntual en contraste con una estimación por intervalo,Cierto_Falso,1,Estadística
+"En la estadística inferencia se busca hacer inferencias o generalizaciones de la población a partir de una muestra, cierto o falso.",Cierto_Falso,1,Estadística
+"En la estadística inferencia se busca hacer predicciones basados en la teoría de la probabilidad,  cierto o falso.",Cierto_Falso,1,Estadística
+"El error tipo I o falso positivo, implica rechazar la hipótesis alterna (es decir rechazar que hay diferencias) y aceptar la hipotesis nula (no hay diferencias) cuando en realidad si hay diferencias",Cierto_Falso,2,Estadística
+"El error tipo 2 o falso negativo, implica rechazar la hipótesis nula(es decir rechazar que no hay diferencias) y aceptar la hipótesis alterna (si hay diferencia) cuando en realidad no las hay",Cierto_Falso,2,Estadística
+"La probabilidad de cometer un error tipo 1 se relaciona con el nivel de alfa, en estudios relacionados con la salud, por lo general se establece en 0.05",Cierto_Falso,1,Estadística
+"Es la probabilidad de obtener un resultado igual al observado o más extremo, bajo la suposición de que la hipótesis nula es verdadera",Mediana_Valor p_Varianza_Media,2,Estadística
+En las pruebas de hipótesis el obtener un valor <0.05 pero >0.001 es,No significativo_Significativo_Irrelevante_Altamente significativo,2,Estadística
+En las pruebas de hipótesis el obtener un valor <0.001 es,No significativo_Significativo_Irrelevante_Altamente significativo,4,Estadística
+Es una prueba estadística para probar la normalidad de los datos,Prueba T..Student_Shapiro-Wilk_Prueba de Wilcox_ANOVA,2,Estadística
+Las pruebas paramétricas se utiliza en datos con distribución no normal,Cierto_Falso,2,Estadística
+La prueba de T. De Student se considera una prueba paramétrica por lo que se utiliza cuando no se cumple el supuesto de normalidad de los datos,Cierto_Falso,2,Estadística
+"La prueba T de Student pareada, se utiliza para comparar dos muestras relacionadas (es decir se podría utilizar en alumnos en los cuales se hace una medición pre intervención y posterior a la intervención una segunda medición. Se podría comparar las medias y saber si la intervención tuvo un cambio significativo",Cierto_Falso,1,Estadística
+La prueba estadística de ANOVA es una prueba no paramétrica que se utiliza cuando se busca comparar 2 grupos o menos ,Cierto_Falso,2,Estadística
+La prueba de X2 (chi cuadrada) se utilizar para la comparación de variables discretas,Cierto_Falso,2,Estadística
+"Es similar a la prueba de X2, pero se suele utilizar cuando no se cumplen los supuestos del número de muestra y si los casos son menores a 5 por celda",T.Student_X2_Prueba exacta de Fishers_ANOVA,3,Estadística
+Es la prueba equivalente a la prueba T de student pero para medidas no paramétricas,T.Student_X2_Prueba exacta de Fishers_Wilcoxon,4,Estadística
+Es le prueba equivalente a ANOVA pero para muestras no paramétricas,Kruskall Wallis_X2_Prueba exacta de Fishers_Wilcoxon,1,Estadística
+Como interpretarias un riesgo relativo de 1.3 en cuanto al riesgo de morir en caso de ser del género masculino comparado con el femenino,130% mayor riesgo respecto al femenino_30% de riesgo mayor al género femenino_riesgos similares_70% mayor de riesgo que el femenino,2,Estadística
+"Si tuviéramos un riesgo relativo de 0.7 con un intervalo de confianza al 95% 0.4-1.2, como se debería interpretar",Riesgo disminuido por 70%_Riesgo mayor por 70%_No se considera un factor de riesgo ni para aumento o disminución_Es probable que con 95% de probabilidad tengamos una reducción del 70% en el riesgo,3,Estadística
+Correlación es lo mismo qué regresión,Cierto_Falso,2,Estadística
+"En la sección de resultados debemos describir el total de resultados que tenemos en nuestras tablas y gráficas, el propósito es describir todos los datos que tenemos de nuestra muestra",Cierto_Falso,2,Estadística
+En la sección de discusión hacemos una comparación entre los hallazgos de nuestro estudio y la literatura internacional (la evidencia existente),Cierto_Falso,1,Estadística

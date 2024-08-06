@@ -1,6 +1,7 @@
 import streamlit as st
 import psycopg2
 import datetime
+from funciones import conectar_base_de_datos
 
 # Función para conectar a la base de datos
 def conectar_base_de_datos():
